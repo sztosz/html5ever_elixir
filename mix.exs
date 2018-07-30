@@ -2,16 +2,18 @@ defmodule Html5ever.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :html5ever,
-     version: "0.6.1",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     compilers: [:rustler] ++ Mix.compilers(),
-     rustler_crates: rustler_crates(),
-     deps: deps(),
-     description: description(),
-     package: package()]
+    [
+      app: :html5ever,
+      version: "0.6.1",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      compilers: [:rustler] ++ Mix.compilers(),
+      rustler_crates: rustler_crates(),
+      deps: deps(),
+      description: description(),
+      package: package()
+    ]
   end
 
   def rustler_crates do
@@ -21,7 +23,7 @@ defmodule Html5ever.Mixfile do
         cargo: :system,
         default_features: false,
         features: [],
-        mode: :release,
+        mode: :release
         # mode: (if Mix.env == :prod, do: :release, else: :debug),
       ]
     ]
@@ -45,8 +47,7 @@ defmodule Html5ever.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:rustler, "~> 0.17.0"},
-     {:ex_doc, ">= 0.0.0", only: :dev}]
+    [{:rustler, "~> 0.18.0"}, {:ex_doc, ">= 0.0.0", only: :dev}]
   end
 
   defp description do
@@ -60,8 +61,7 @@ defmodule Html5ever.Mixfile do
       files: ["lib", "native", "mix.exs", "README.md"],
       maintainers: ["hansihe"],
       licenses: ["MIT", "Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/hansihe/html5ever_elixir"},
+      links: %{"GitHub" => "https://github.com/hansihe/html5ever_elixir"}
     ]
   end
-
 end
